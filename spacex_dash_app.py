@@ -7,7 +7,7 @@ from dash.dependencies import Input, Output
 import plotly.express as px
 
 # Read the airline data into pandas dataframe
-spacex_df = pd.read_csv("spacex_launch_dash.csv")
+spacex_df = pd.read_csv("dataset/spacex_launch_dash.csv")
 max_payload = spacex_df['Payload Mass (kg)'].max()
 min_payload = spacex_df['Payload Mass (kg)'].min()
 
@@ -73,11 +73,14 @@ def get_pie_chart(entered_site):
               [Input(component_id='site-dropdown', component_property='value'),
                Input(component_id='payload-slider', component_property='value')])
 def get_scatter_plot(entered_site, payload):
+    min, max = payload
     if entered_site=='ALL':
-        fig = px.scatter(spacex_df, x='Payload Mass (kg)', y='class', color='Booster Version Category')
+        filtered_df = spacex_df.loc[(spacex_df['Payload Mass (kg)']>min) & (spacex_df['Payload Mass (kg)']<max)]
+        fig = px.scatter(filtered_df, x='Payload Mass (kg)', y='class', color='Booster Version Category')
         return fig
     else:
         filtered_df = spacex_df.loc[spacex_df['Launch Site']==entered_site]
+        filtered_df = filtered_df.loc[(filtered_df['Payload Mass (kg)']>min) & (spacex_df['Payload Mass (kg)']<max)]
         fig = px.scatter(filtered_df, x='Payload Mass (kg)', y='class', color='Booster Version Category')
         return fig
 # Run the app
