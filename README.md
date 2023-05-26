@@ -7,3 +7,8 @@ However, the cost for launching rockets are not economical. So, Space X aims to 
 In this project, I used CRISP-DM process to make a prediction on a rocket launch first stage landing succession based on historical data of Space X Falcon 9 rocket launches. From business understanding, this project aims to share information to alternate companies that wants to bid against Space X for rocket launch. The information provided is to help determining whether I can predict if the first stage of rocket launch will be successfull and thus can detemine the cost. I start with data collection, data wrangling, exploratory data analysis (EDA) with seaborn library and SQL, visual analytics, and predictive analytics.
 
 ## Methodology
+1. Data collection (Space X API and webscraping)
+2. Data wrangling
+3. Exploratory data analysis (EDA)
+4. Interactive visual analytics (Dashboard) using dash
+5. Predictive analytics (Classification)
