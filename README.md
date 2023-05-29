@@ -14,7 +14,8 @@ In this project, I used CRISP-DM process to make a prediction on a rocket launch
 5. Predictive analytics (Classification)
 
 ## 1. Data Collection
-The data was collected through 2 methods: Space X API wit REST and webscraping Space X wikipedia page. Notebooks: 
+The data was collected through 2 methods: Space X API wit REST and webscraping Space X wikipedia page.  
+Notebooks: [Space X API](https://github.com/BrianLoe/Coursera_capstone/blob/main/jupyter-labs-spacex-data-collection-api.ipynb), [Webscraping](https://github.com/BrianLoe/Coursera_capstone/blob/main/jupyter-labs-webscraping.ipynb)
 ### a. Space X API
 ![image](https://github.com/BrianLoe/Coursera_capstone/assets/58500773/7dcfad97-b526-4a01-b5dc-343de2052383)  
 Description:  
@@ -27,7 +28,9 @@ Description:
 Data from wikipedia page is extracted using `BeautifulSoup` library. Using `GET` function from `requests`, I parse the data that is in html format using `BeautifulSoup`. The actual table that contain the data is in the third table. I extracted all relevant columns from that table using function that was defined by IBM. After getting all columns name, I created a dictionary with them as keys. Iterate through the table elements to extract the data needed and store it based on the dictionary keys created earlier. Construct a dataframe from the dictionary so it is easier to read and export for further use.
 
 ## 2. Data Wrangling
-Now that I have collected the data, I need to understand the data, the columns, and the values. Identifying is the main aspect in this stage including calculating the number of missing values. All launch site names, orbit names and the number of launches as well as all type of mission outcomes need to be identified here.
+Now that I have collected the data, I need to understand the data, the columns, and the values. Identifying is the main aspect in this stage including calculating the number of missing values. All launch site names, orbit names and the number of launches as well as all type of mission outcomes need to be identified here.  
+Notebook: [Data Wrangling](https://github.com/BrianLoe/Coursera_capstone/blob/main/labs-jupyter-spacex-Data%20wrangling.ipynb)
+
 There are 4 launch sites:
 - CCAFS SLC 40
 - CCAFS LC 40
@@ -84,7 +87,10 @@ We need to separate the good and bad outcomes. Good outcomes are those that have
  `True Ocean` means the mission outcome was successfully  landed to a specific region of the ocean while `False Ocean` means the mission outcome was unsuccessfully landed to a specific region of the ocean. `True RTLS` means the mission outcome was successfully  landed to a ground pad `False RTLS` means the mission outcome was unsuccessfully landed to a ground pad. `True ASDS` means the mission outcome was successfully  landed to a drone ship `False ASDS` means the mission outcome was unsuccessfully landed to a drone ship. `None ASDS` and `None None` these represent landing failure.
 
 ## 3. EDA
-Tools to do the EDA are SQL and data visualisation with Python. With data visualisation I created plots for observing relationships between two numerical variables, two categorical variables, and numerical with categorical variables. With SQL, I explored some simple queries to find out more about detailed information. After that, I can do feature engineering and also one-hot encoding for categorical variables (data preparation). Summary results from EDA:
+Tools to do the EDA are SQL and data visualisation with Python. With data visualisation I created plots for observing relationships between two numerical variables, two categorical variables, and numerical with categorical variables. With SQL, I explored some simple queries to find out more about detailed information. After that, I can do feature engineering and also one-hot encoding for categorical variables (data preparation).  
+Notebooks: [Data Visualisation](https://github.com/BrianLoe/Coursera_capstone/blob/main/jupyter-labs-eda-dataviz.ipynb), [SQL](https://github.com/BrianLoe/Coursera_capstone/blob/main/jupyter-labs-eda-sql-coursera_sqllite.ipynb), [Map](https://github.com/BrianLoe/Coursera_capstone/blob/main/lab_jupyter_launch_site_location.ipynb)  
+
+Summary results from EDA:
 - Different launch sites have different success rate. VAFB SLC 4E and KSC LC 39A have the highest successful rocket launches
 - Some sites depend on the payload mass to achieve a successful outcome.
 - Orbits SSO, HEO, GEO, and ES-L1 have the highest success rate (100%).
@@ -101,7 +107,8 @@ In addition, I also performed analysis using geospatial features with `folium'. 
 ![image](https://github.com/BrianLoe/Coursera_capstone/assets/58500773/7e7f5ffe-448c-453c-8dd9-210d022bdacb)
 
 ## 4. Interactive visual analytics using `Dash`
-Dashboard was created using Plotly Dash written in Python. Here is the picture of the dashboard:
+Dashboard was created using Plotly Dash written in Python. File: [Code](https://github.com/BrianLoe/Coursera_capstone/blob/main/spacex_dash_app.py)  
+Here is the picture of the dashboard:
 ![image](https://github.com/BrianLoe/Coursera_capstone/assets/58500773/d097356d-fc8b-4331-8080-22ce135da2db)  
 Interactive features:
 - Dropdown list of launch sites
@@ -112,4 +119,18 @@ Graphs used:
 - Scatter plot for payload mass vs class
 
 ## 5. Predictive analytics (Classification)
+I used 4 classifier models to predict the outcome: Logistic Regression, Support Vector Machine (SVM), Decision Tree (tree), and K-Neighbors (KNN). 
+Notebook: [Prediction](https://github.com/BrianLoe/Coursera_capstone/blob/main/SpaceX_Machine_Learning_Prediction_Part_5.ipynb)  
+
+I normalise the features using standardisation. There are 18 samples used to test the model. We only have 90 population in the data, so after splitting into training and test with the size 80-20, I only have 18 samples in the test set. Each model were built using Grid search cross validation (Grid search CV) to find the best parameters for each model. After building and fitting the model with train data here are the accuracy scores for all models:
+![image](https://github.com/BrianLoe/Coursera_capstone/assets/58500773/09e4c9dc-34f9-4a64-8b8c-c29440238ece)  
+After being run twice:  
+![image](https://github.com/BrianLoe/Coursera_capstone/assets/58500773/1807c7e1-48cf-4557-a908-acdccfde7d6a)
+
+It can be seen that all models have a similar and consistent performance. The decision tree model is a little overfitting and inconsistent when being tested multiple times. So, although it gives the best score, I would still choose the KNN model because it gives a slightly higher score than other models. The confusion matrix for all models is as following:
+![image](https://github.com/BrianLoe/Coursera_capstone/assets/58500773/638857d7-9d3e-4d6a-aa08-d28d657c6e56)  
+For KNN:  
+![image](https://github.com/BrianLoe/Coursera_capstone/assets/58500773/29b37aa5-8268-41f6-8f23-d98aa622d82d)
+
+Again, the performance is similar and the confusion matrix looks the same for all models.
 
