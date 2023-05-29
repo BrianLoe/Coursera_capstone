@@ -83,4 +83,26 @@ For the mission outcome, there are 8 different combinations:
 We need to separate the good and bad outcomes. Good outcomes are those that have 'True' and bad outcomes have either 'None' or 'False'. From there, I separated them for labelling and created a `class` column. I found out that the success rate for the data is 67%. Here are some explanation about the mission outcomes: 
  `True Ocean` means the mission outcome was successfully  landed to a specific region of the ocean while `False Ocean` means the mission outcome was unsuccessfully landed to a specific region of the ocean. `True RTLS` means the mission outcome was successfully  landed to a ground pad `False RTLS` means the mission outcome was unsuccessfully landed to a ground pad. `True ASDS` means the mission outcome was successfully  landed to a drone ship `False ASDS` means the mission outcome was unsuccessfully landed to a drone ship. `None ASDS` and `None None` these represent landing failure.
 
+## 3. EDA
+Tools to do the EDA are SQL and data visualisation with Python. With data visualisation I created plots for observing relationships between two numerical variables, two categorical variables, and numerical with categorical variables. With SQL, I explored some simple queries to find out more about detailed information. After that, I can do feature engineering and also one-hot encoding for categorical variables (data preparation). Summary results from EDA:
+- Different launch sites have different success rate. VAFB SLC 4E and KSC LC 39A have the highest successful rocket launches
+- Some sites depend on the payload mass to achieve a successful outcome.
+- Orbits SSO, HEO, GEO, and ES-L1 have the highest success rate (100%).
+- Some orbits depend on the number of flights to achieve a successful outcome.
+- There is a weak positive relatonship between payload mass and outcome
+- After 2013, the success rate for landing rockets have increased where it peaks in 2019 (+-90%).
+ 
+In addition, I also performed analysis using geospatial features with `folium'. Particularly, we are intersted in visualising success/fail launches based on each site, proximity place of interest (city, railway, highway, coastline). Here is the pictures of the map:
+![image](https://github.com/BrianLoe/Coursera_capstone/assets/58500773/5850499b-4d3c-4b1e-8e85-bcb9a13a6fa7)  
+![image](https://github.com/BrianLoe/Coursera_capstone/assets/58500773/cdaf58cc-9f61-442d-ba02-c232f38954df)
+![image](https://github.com/BrianLoe/Coursera_capstone/assets/58500773/f902cd1f-961d-4732-801c-d8ea98c26aa5)
+![image](https://github.com/BrianLoe/Coursera_capstone/assets/58500773/d2b8c881-2374-49a5-a3ea-b5345c72700c)
+![image](https://github.com/BrianLoe/Coursera_capstone/assets/58500773/dbd3fa6f-f1e1-4014-b87b-db751f36b079)
+![image](https://github.com/BrianLoe/Coursera_capstone/assets/58500773/7e7f5ffe-448c-453c-8dd9-210d022bdacb)
+
+## 4. Interactive visual analytics using `Dash`
+
+
+
+
 
