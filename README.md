@@ -14,7 +14,7 @@ In this project, I used CRISP-DM process to make a prediction on a rocket launch
 5. Predictive analytics (Classification)
 
 ## 1. Data Collection
-The data was collected through 2 methods: Space X API wit REST and webscraping Space X wikipedia page.
+The data was collected through 2 methods: Space X API wit REST and webscraping Space X wikipedia page. Notebooks: 
 ### a. Space X API
 ![image](https://github.com/BrianLoe/Coursera_capstone/assets/58500773/7dcfad97-b526-4a01-b5dc-343de2052383)  
 Description:  
@@ -101,8 +101,15 @@ In addition, I also performed analysis using geospatial features with `folium'. 
 ![image](https://github.com/BrianLoe/Coursera_capstone/assets/58500773/7e7f5ffe-448c-453c-8dd9-210d022bdacb)
 
 ## 4. Interactive visual analytics using `Dash`
+Dashboard was created using Plotly Dash written in Python. Here is the picture of the dashboard:
+![image](https://github.com/BrianLoe/Coursera_capstone/assets/58500773/d097356d-fc8b-4331-8080-22ce135da2db)  
+Interactive features:
+- Dropdown list of launch sites
+- Range slider for payload values  
+    
+Graphs used:
+- Pie chart for site success percentage
+- Scatter plot for payload mass vs class
 
-
-
-
+## 5. Predictive analytics (Classification)
 
